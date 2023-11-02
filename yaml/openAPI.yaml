@@ -1,0 +1,183 @@
+openapi: 3.0.3
+info:
+  title: Dokumen API Cloud Function GIS- OpenAPI 3.0
+  description: >-
+    Dokumentasi API Matakuliah GIS
+  termsOfService: https://github.com/gis5syahid
+  contact:
+    email: masyahida4@gmail.com
+  license:
+    name: Backend Package
+    url: https://pkg.go.dev/github.com/MSyahidAlFajri/backendgcp
+  version: 1.0.11
+externalDocs:
+  description: Swagger
+  url: https://gis5syahid.github.io/
+servers:
+  - url: https://asia-southeast2-rock-prism-401900.cloudfunctions.net
+tags:
+  - name: auth
+    description: Authentikasi
+    externalDocs:
+      description: Deskripsi dan Kode Program
+      url: https://github.com/MSyahidAlFajri/backendgcp
+  - name: data
+    description: Data Untuk akses GIS
+    externalDocs:
+      description: Deskripsi dan Kode Program
+      url: https://github.com/MSyahidAlFajri/backendgcp
+paths:
+  /Login:
+    post:
+      tags:
+        - auth
+      summary: Login get Token
+      description: Login and Get User Token
+      operationId: authService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Auth'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '405':
+          description: Invalid input
+  /InsertDataGeo:
+    post:
+      tags:
+        - data
+      summary: Insert Data Geo
+      description: Update data nama by volume geo
+      operationId: authService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/bodycord'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '405':
+          description: Invalid input          
+      security:
+        - Login:
+          - write:apiKey
+          - read:apiKey
+
+  /GetDataGeo:
+    get:
+      tags:
+        - data
+      summary: Get Data Geojson
+      description: Header auth 
+      operationId: GetdataGeojson
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/responseUser'
+        '400':
+          description: Invalid status value
+      security:
+        - Login:
+          - write:apiKey
+          - read:apiKey
+
+components:
+  schemas:
+    Response:
+      type: object
+      properties:
+        status:
+          type: bool
+          example: true
+        message:
+          type: string
+          example: Berhasil Input data
+    Auth:
+      type: object
+      properties:
+        username:
+          type: string
+          example: syahid
+        password:
+          type: string
+          example: kepo
+    bodycord:
+      type: object
+      properties:
+        type:
+          type: string
+          example: polygon
+        name:
+          type: string
+          example: syahid
+        volume:
+          type: string
+          example: "1"
+    AuthResponse:
+      type: object
+      properties:
+        status:
+          type: bool
+          example: false
+        message:
+          type: string
+          example: Selamat Datang
+        token:
+          type: string
+          example: anjasss
+    responseUser:
+      type: object
+      properties:
+        status:
+          type: bool
+          example: true
+        message:
+          type: string
+          example: berhasil ambil data
+        data:
+          type: object
+          properties:
+            geometry:
+              type: string
+              example: Point
+            properties:
+              type: string
+              example: Penang Swalayan
+  requestBodies:
+    AuthReq:
+      description: Request Authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Auth'
+    UserArray:
+      description: List of user object
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/AuthResponse'
+  securitySchemes:
+    Login:
+      type: apiKey
+      name: Login
+      in: header
+
+      
