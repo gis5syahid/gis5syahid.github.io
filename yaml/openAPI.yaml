@@ -253,6 +253,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Auth'
+    DataArray:
+      description: List of user object
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/AuthResponse'
   securitySchemes:
     Login:
       type: apiKey
