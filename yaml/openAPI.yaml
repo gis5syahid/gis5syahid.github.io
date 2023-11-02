@@ -198,13 +198,13 @@ components:
       properties:
         status:
           type: bool
-          example: false
-        message:
-          type: string
-          example: Selamat Datang
+          example: true
         token:
           type: string
           example: anjass
+        message:
+          type: string
+          example: Selamat Datang
     responseUser:
       type: object
       properties:
