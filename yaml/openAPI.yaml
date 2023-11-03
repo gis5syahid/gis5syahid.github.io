@@ -89,7 +89,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/responseUser'
+                  $ref: '#/components/schemas/responseData'
         '400':
           description: Invalid status value
       security:
@@ -214,24 +214,24 @@ components:
         message:
           type: string
           example: Selamat Datang
-    responseUser:
-      type: object
-      properties:
-        status:
-          type: bool
-          example: true
-        message:
-          type: string
-          example: berhasil ambil data
+    responseData:
         data:
+        type: object
+      properties:
+        type:
+          type: string
+        geometry:
           type: object
           properties:
-            geometry:
+            type: 
               type: string
-              example: Point
-            properties:
+            coordinates: 
+              type: array
+        properties:
+          type: object
+          properties:
+            name:
               type: string
-              example: Penang Swalayan
     
     ReqData:
       type: object
@@ -254,7 +254,7 @@ components:
           example: true
         message:
           type: string
-          example: Berhasil menghapus data
+          example: Berhasil menghapus data. Jumlah data terhapus:
   requestBodies:
     AuthReq:
       description: Request Authentication
