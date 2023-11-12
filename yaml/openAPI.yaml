@@ -198,10 +198,10 @@ components:
           example: Point
         name:
           type: string
-          example: bangunan uhuyy
+          example: syahid 
         volume:
           type: string
-          example: anjas
+          example: uhuy
     AuthResponse:
       type: object
       properties:
@@ -240,10 +240,10 @@ components:
           example: Point
         name:
           type: string
-          example: bangunan uhuyy
+          example: syahid 
         volume:
           type: string
-          example: anjas
+          example: uhuyy
 
     Data:
       type: object
