@@ -5,7 +5,7 @@ import {map} from '../config/peta.js';
 import Draw from 'https://cdn.skypack.dev/ol/interaction/Draw.js';
 
 export function getTokenFromAPI() {
-    const tokenUrl = "https://asia-southeast2-argon-fire-401902.cloudfunctions.net/loginGISChapter5";
+    const tokenUrl = "https://asia-southeast2-msyahid.cloudfunctions.net/LoginGeo";
     fetch(tokenUrl)
       .then(response => response.json())
       .then(tokenData => {
@@ -177,7 +177,7 @@ export function ResponsePostLogin(response) {
     if (response && response.token) {
       console.log('Token User:', response.token);
       setCookieWithExpireHour('Login', response.token, 3);
-      window.location.href = 'https://1214005gis5.my.id/dashboard';
+      window.location.href = 'https://gis5syahid.github.io/dashboard';
       alert("Selamat Datang")
     } else {
       alert('Login gagal. Silakan coba lagi.');
