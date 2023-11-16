@@ -21,6 +21,11 @@ tags:
     externalDocs:
       description: Deskripsi dan Kode Program
       url: https://github.com/MSyahidAlFajri/backendgcp
+  - name: register
+    description: Data Untuk akses GIS
+    externalDocs:
+      description: Deskripsi dan Kode Program
+      url: https://github.com/MSyahidAlFajri/backendgcp
   - name: data
     description: Data Untuk akses GIS
     externalDocs:
@@ -48,6 +53,31 @@ paths:
                 $ref: '#/components/schemas/AuthResponse'
         '405':
           description: Invalid input
+  /RegisterGeo:
+    post:
+      tags:
+        - register
+      summary: Register User
+      description: Daftar Akun User
+      operationId: authService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '405':
+          description: Invalid input
+      security:
+        - Login:
+            - write:apiKey
+            - read:apiKey
   /InsertDataGeo:
     post:
       tags:
@@ -151,6 +181,15 @@ paths:
           - read:apiKey
 components:
   schemas:
+    user:
+      type: object
+      properties:
+        username:
+          type: string
+          example : syahid
+        password:
+          type: string
+          example: kepo
     ResponseInsert:
       type: object
       properties:
@@ -261,6 +300,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Auth'
+    UserArray:
+      description: List of user object
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/AuthResponse'
     DataArray:
       description: List of user object
       content:
