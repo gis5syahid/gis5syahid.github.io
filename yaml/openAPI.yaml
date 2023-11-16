@@ -14,7 +14,7 @@ externalDocs:
   description: Swagger
   url: https://gis5syahid.github.io/
 servers:
-  - url: https://asia-southeast2-rock-prism-401900.cloudfunctions.net
+  - url: https://asia-southeast2-msyahid.cloudfunctions.net
 tags:
   - name: auth
     description: Authentikasi
