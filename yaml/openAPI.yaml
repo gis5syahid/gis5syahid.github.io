@@ -48,10 +48,6 @@ paths:
                 $ref: '#/components/schemas/AuthResponse'
         '405':
           description: Invalid input
-      security:
-        - token:
-          - write:apiKey
-          - read:apiKey
   /InsertDataGeo:
     post:
       tags:
