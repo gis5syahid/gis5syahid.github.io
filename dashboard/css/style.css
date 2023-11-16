@@ -145,3 +145,14 @@ h2.chapter {
   font-style: italic; /* Gaya teks miring */
   color: #666; /* Warna teks yang lebih ringan */
 }
+
+.title {
+  font-size: 30px; /* Ukuran font */
+  font-weight: bold; /* Ketebalan teks */
+}
+.description {
+  font-size: 18px; /* Ukuran font */
+  font-style: italic; /* Gaya teks miring */
+  color: #666; /* Warna teks yang lebih ringan */
+  text-align: center;
+}
