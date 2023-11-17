@@ -19,25 +19,23 @@ export function onDeleteMarkerClick() {
 }
 
 export function onSubmitMarkerClick() {
-    let long = getValue('long');
-    let lat = getValue('lat');
-    let name = getValue('name');
-    let volume = getValue('volume');
-    let type = getValue('type');
-    let data = {
-      "type" : type,
-      "name" : name,
-      "volume" : volume,
-      "coordinates" : [
-      parseFloat(long),parseFloat(lat)
-    ]
+  let name = getValue('name');
+  let volume = getValue('volume');
+  let type = getValue('type');
+
+  let data = {
+      "type": type,
+      "name": name,
+      "volume": volume,
+      "coordinates": allCoordinates
   };
-  postWithToken(urlPostGCF,"Token","9109a567f9e6aa5fa90f8e6610d43d99de52bc0bc5b38ea884eedcd2f54ccaa7",data,afterSubmitCOG);
-overlay.setPosition(undefined);
-textBlur('popup-closer');
-  insertMarker(name,long,lat,volume);
-  idmarker.id=idmarker.id+1;
-console.log(name)
+
+  postWithToken(urlPostGCF, "Login", cookie, data, afterSubmitCOG);
+  overlay.setPosition(undefined);
+  textBlur('popup-closer');
+  insertMarker(name, long, lat, volume);
+  idmarker.id = idmarker.id + 1;
+  console.log(name);
 }
 
 function afterSubmitCOG(result){
